@@ -1,0 +1,29 @@
+{
+  "name": "joinery.vim",
+  "version": "1.0.0",
+  "description": "Joins code together (and splits it apart)",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.7",
+    "mocha": "^6.2.0",
+    "napa": "^3.0.0",
+    "neovim": "^4.10.1",
+    "tree-sitter-cli": "^0.20.1",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "scripts": {
+    "install_": "napa nvim-treesitter/nvim-treesitter | napa FooSoft/vim-argwrap",
+    "test": "mocha --require ts-node/register --exit test/**/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kizza/jump-from-treesitter.nvim.git"
+  },
+  "author": "kizza (Keiran O'Leary)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kizza/jump-from-treesitter.nvim/issues"
+  },
+  "homepage": "https://github.com/kizza/joinery.nvim#readme"
+}

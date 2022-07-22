@@ -44,8 +44,8 @@ function joinery#join(range)
 
   " If within brackets (on surrounding lines) execute ArgWrap
   let [line_start, column_start, line_end, column_end] = callable
-  if exists(":ArgWrap") && joinery#util#is_within_block_brackets(line_start)
-    execute ":ArgWrap"
+  if joinery#argwrap#enabled() && joinery#util#is_within_block_brackets(line_start)
+    call joinery#argwrap#execute()
   endif
 endfunction
 
@@ -66,8 +66,8 @@ function joinery#split(range, block)
 
   " If within brackets (and using Vim-ArgWrap execute that first)
   let [line_start, column_start, line_end, column_end] = a:range
-  if exists(":ArgWrap") && joinery#util#is_within_line_brackets(line_start, column_start)
-    execute ":ArgWrap"
+  if joinery#argwrap#enabled() && joinery#util#is_within_line_brackets(line_start, column_start)
+    call joinery#argwrap#execute()
     redraw
     call joinery#toggle()
     return

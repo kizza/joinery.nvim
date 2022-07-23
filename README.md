@@ -1,4 +1,5 @@
 # Joins code together (and splits it apart).
+[![Tests](https://github.com/kizza/joinery.nvim/actions/workflows/tests.yml/badge.svg)](https://github.com/kizza/joinery.nvim/actions/workflows/tests.yml)0
 
 Specifically joining lines of callable code into a single line, or splitting it into indented wrapped lines
 

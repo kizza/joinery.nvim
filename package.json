@@ -7,13 +7,14 @@
     "@types/node": "^12.7.7",
     "mocha": "^6.2.0",
     "napa": "^3.0.0",
-    "neovim": "^4.10.1",
+    "nvim-test-js": "0.0",
+    "nvim-treesitter": "https://github.com/nvim-treesitter/nvim-treesitter",
     "tree-sitter-cli": "^0.20.1",
     "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "vim-argwrap": "https://github.com/FooSoft/vim-argwrap"
   },
   "scripts": {
-    "install_": "napa nvim-treesitter/nvim-treesitter | napa FooSoft/vim-argwrap",
     "test": "mocha --require ts-node/register --exit test/**/*.test.ts"
   },
   "repository": {

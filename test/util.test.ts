@@ -1,14 +1,18 @@
 import assert from "assert";
-import {populateBuffer} from "./helpers/buffer";
+import {getBuffer, setBuffer, vimRunner} from "nvim-test-js";
+import * as path from "path";
 import {callVim} from "./helpers/call";
-import {withVim} from "./helpers/vim";
+
+const withVim = vimRunner(
+  {vimrc: path.resolve(__dirname, "helpers", "vimrc.vim")}
+)
 
 describe("util", () => {
   describe("within_brackets", () => {
     ["foo(ba|r)baz", "(|)foo", "foo(|)", "foo(|)baz", "foo[|]baz", "foo{|}baz", "foo([{|}])"].forEach((example) =>
       it(`is true for ${example}`, () =>
         withVim(async nvim => {
-          await populateBuffer(nvim, [example], "ruby");
+          await setBuffer(nvim, [example], "ruby");
           const [_, line, column, __] = await callVim<string[]>(nvim, `getpos(".")`)
           const result = await callVim<boolean>(nvim, `joinery#util#is_within_line_brackets(${line}, ${column})`)
           assert.equal(result, true);
@@ -16,7 +20,7 @@ describe("util", () => {
 
     it("is false when false", () =>
       withVim(async nvim => {
-        await populateBuffer(nvim, ["foo b|ar baz"], "ruby");
+        await setBuffer(nvim, ["foo b|ar baz"], "ruby");
         const [_, line, column, __] = await callVim<string[]>(nvim, `getpos(".")`)
         const result = await callVim<boolean>(nvim, `joinery#util#is_within_line_brackets(${line}, ${column})`)
         assert.equal(result, false);

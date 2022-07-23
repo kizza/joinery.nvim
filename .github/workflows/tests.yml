@@ -59,8 +59,8 @@ jobs:
 
       - name: Compile tree-sitter grammars
         run: |
-          nvim --headless -u "$(pwd)/test/helpers/vimrc" -c "TSInstallSync ruby" -c "q"
-          nvim --headless -u "$(pwd)/test/helpers/vimrc" -c "TSInstallSync javascript" -c "q"
+          nvim --headless -u "$(pwd)/test/helpers/vimrc.vim" -c "TSInstallSync ruby" -c "q"
+          nvim --headless -u "$(pwd)/test/helpers/vimrc.vim" -c "TSInstallSync javascript" -c "q"
 
       - name: Run tests
         env:

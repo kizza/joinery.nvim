@@ -7,16 +7,8 @@ local M = {}
 
 local function get_callable_scope()
   local current_node = ts_utils.get_node_at_cursor()
-  while current_node and current_node:type() ~= "call" do
-    current_node = current_node:parent()
-  end
-
-  if not current_node then
-    return nil
-  end
-
-  local is_callable = function(node) return node:type() == "call" or node:type() == "argument_list" end
-  return tree.find_parent_with(current_node, is_callable)
+  local grammar_module = "joinery.grammar."..(vim.api.nvim_eval("&filetype"))
+  return require(grammar_module).get_callable_scope(current_node)
 end
 
 local function get_partitioned_ranges(node)

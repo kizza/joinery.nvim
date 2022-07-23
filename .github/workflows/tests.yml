@@ -57,8 +57,10 @@ jobs:
           yarn install --frozen-lockfile
           echo "$(pwd)/node_modules/.bin" > $GITHUB_PATH
 
-      - name: Compile tree-sitter grammar
-        run: nvim --headless -u "$(pwd)/test/helpers/vimrc" -c "TSInstallSync ruby" -c "q"
+      - name: Compile tree-sitter grammars
+        run: |
+          nvim --headless -u "$(pwd)/test/helpers/vimrc" -c "TSInstallSync ruby" -c "q"
+          nvim --headless -u "$(pwd)/test/helpers/vimrc" -c "TSInstallSync javascript" -c "q"
 
       - name: Run tests
         env:

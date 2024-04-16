@@ -12,3 +12,10 @@ execute 'set runtimepath+='.s:plugin
 execute 'set runtimepath+='.s:plugin.'/node_modules/nvim-treesitter'
 
 execute 'cd '.s:plugin
+
+lua << EOF
+  require 'nvim-treesitter.configs'.setup {
+    ensure_installed = { "ruby", "javascript" },
+    sync_install = true,
+  }
+EOF

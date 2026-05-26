@@ -1,5 +1,3 @@
-local ts_utils = require "nvim-treesitter.ts_utils"
-
 local M = {}
 
 local function debug_children(node)
@@ -15,7 +13,9 @@ local function debug_children(node)
 end
 
 function M.debug_node(node)
-  print(string.format("%s Text: \"%s\"", node:type(), ts_utils.get_node_text(node)[1]))
+  local text = vim.treesitter.get_node_text(node, 0)
+  local first_line = vim.split(text, "\n")[1]
+  print(string.format("%s Text: \"%s\"", node:type(), first_line))
   print("Children...")
   debug_children(node)
 
